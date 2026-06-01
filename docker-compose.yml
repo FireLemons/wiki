@@ -13,7 +13,7 @@ services:
       # Note: Leave the line below commented out for the initial run!
       # - ./LocalSettings.php:/var/www/html/LocalSettings.php
     environment:
-      MEDIAWIKI_DB_HOST: db
+      MEDIAWIKI_DB_HOST: ${DATABASE_HOST}
       MEDIAWIKI_DB_USER: ${WIKI_APP_USER}
       MEDIAWIKI_DB_PASSWORD: ${WIKI_APP_PASSWORD}
       MEDIAWIKI_DB_NAME: ${DATABASE_NAME}
