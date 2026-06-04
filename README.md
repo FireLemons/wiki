@@ -52,3 +52,24 @@ run `./create_users.sh` and run the output SQL into the mariaDB console.
 copy `dev.env` into `.env`  
 
 docker compose --profile dev up
+
+## Database  
+  
+MariaDB is the database. [Version compatability with mediawiki can be found here.](https://www.mediawiki.org/wiki/Special:MyLanguage/Compatibility#Database)
+
+On linux, it can be accessed by installing the client.
+```shell
+sudo apt install mariadb-client
+```
+
+Then logging in as wiki_schema.
+
+```shell
+mysql -h <HOST_IP> -P 3306 -u wiki_schema -p
+```
+
+The docker image int the dev environment comes with a mariadb client. It can be accessed via:
+
+```shell
+docker exec -it mediawiki_db mariadb -h <HOST_IP> -u wiki_schema -p
+```
