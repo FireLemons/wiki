@@ -10,12 +10,11 @@ services:
       - 8080:80
     volumes:
       - mediawiki_images:/var/www/html/images
-      # Note: Leave the line below commented out for the initial run!
-      # - ./LocalSettings.php:/var/www/html/LocalSettings.php
+      - ./LocalSettings.php:/var/www/html/LocalSettings.php
     environment:
       MEDIAWIKI_DB_HOST: ${DATABASE_HOST}
-      MEDIAWIKI_DB_USER: ${WIKI_APP_USER}
-      MEDIAWIKI_DB_PASSWORD: ${WIKI_APP_PASSWORD}
+      MEDIAWIKI_DB_USER: ${WIKI_DB_APP_USER}
+      MEDIAWIKI_DB_PASSWORD: ${WIKI_DB_APP_PASSWORD}
       MEDIAWIKI_DB_NAME: ${DATABASE_NAME}
 
   db:
@@ -27,10 +26,10 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${DATABASE_NAME}
-      WIKI_SCHEMA_USER: ${WIKI_SCHEMA_USER}
-      WIKI_SCHEMA_PASSWORD: ${WIKI_SCHEMA_PASSWORD}
-      WIKI_APP_USER: ${WIKI_APP_USER}
-      WIKI_APP_PASSWORD: ${WIKI_APP_PASSWORD}
+      WIKI_DB_SCHEMA_USER: ${WIKI_DB_SCHEMA_USER}
+      WIKI_DB_SCHEMA_PASSWORD: ${WIKI_DB_SCHEMA_PASSWORD}
+      WIKI_DB_APP_USER: ${WIKI_DB_APP_USER}
+      WIKI_DB_APP_PASSWORD: ${WIKI_DB_APP_PASSWORD}
     volumes:
       - db_data:/var/lib/mysql
       - ./create_users.sh:/docker-entrypoint-initdb.d/init.sh
